@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
+      source = "hashicorp/aws"
     }
   }
 }
@@ -12,12 +12,12 @@ provider "aws" {
 }
 
 resource "aws_instance" "SocksMachine" {
-  ami = "ami-08ca3fed11864d6bb"
+  ami           = "ami-08ca3fed11864d6bb"
   instance_type = "t2.micro"
-  count = 2
+  count         = 2
 
   tags = {
-    Name = "SocksMachine"
+    Name  = "SocksMachine"
     Owner = "ILYA"
   }
 
@@ -27,7 +27,7 @@ resource "aws_instance" "SocksMachine" {
     volume_type = "gp2"
   }
 
-    ebs_block_device {
+  ebs_block_device {
     device_name = "data"
     volume_size = 10
     volume_type = "gp2"
@@ -39,12 +39,12 @@ resource "aws_instance" "SocksMachine" {
 }
 
 resource "aws_security_group" "SecGroup1" {
-  name = "SecGroup1"
+  name        = "SecGroup1"
   description = "Security Group for Developers"
   ingress {
-    from_port = 22
-    protocol  = "TCP"
-    to_port   = 22
+    from_port   = 22
+    protocol    = "TCP"
+    to_port     = 22
     description = "ILYA HOME"
     cidr_blocks = [
       "79.176.95.128/32"
